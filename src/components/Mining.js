@@ -1,5 +1,5 @@
 import { Row, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Mining() {
   return (
@@ -14,7 +14,9 @@ export default function Mining() {
       </div>
       <div className="d-flex justify-center mt-3 mb-5">
         <Button variant="primary" size="lg">
-          Choose Miner
+          <Link to="/mint" className="minerLink">
+            Choose Miner
+          </Link>
         </Button>{" "}
       </div>
     </Row>
