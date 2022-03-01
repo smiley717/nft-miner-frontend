@@ -5,11 +5,70 @@ export default function Mining() {
   return (
     <Row className="align-center gradient-background" id="mining">
       <div className="about-text">
-        <p className="text-center text-darkblue mb-0 fs-1 fw-bold">
-          A mining pool is a joint group of cryptocurrency miners who combine
-          their computational resources over a network to strengthen the
-          probability of finding a block or otherwise successfully mining for
-          cryptocurrency .
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          <span className="fs-3 fw-bold text-light">Benefits of mining: </span>
+          Crypto miners are the perfect investment for people who don't have the
+          time to make technical decisions about when to buy and sell their
+          crypto. Mining has shown to be a safer alternative due to profits
+          being made everyday causing a guaranteed ROI to be reached in the
+          future. Think of crypto mining as strong linear growth rather than
+          dealing with the volatile movement of the current crypto markets.
+        </p>
+        <br></br>
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          <span className="fs-3 fw-bold text-light">Our service: </span>
+          At KOR we decided to do things different from the current cloud mining
+          model. We believe Web3 is the future so we have decided to integrate
+          our service here. Your mining contracts will now be stored as NFTs on
+          ethereum's blockchain. The NFTs will be ERC-721 tokens and can be
+          traded publicly on Opensea. To make sure everyone who uses our service
+          receives their ROI, we have given a length of 4 years for each
+          contract. If the miner malfunctions, KOR will replace it and no
+          changes would occur to your payout.
+        </p>
+        <br></br>
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          <span className="fs-3 fw-bold text-light">Why KOR? </span>
+          You simply make more profit. That’s why. We have invested in state of
+          the art immersion cooling setups that will increase your payouts. This
+          is because when a miner is submerged in dielectric fluid it can bring
+          the internal temperature of the miner lower than the traditional air
+          cooled setup. In lower temperatures the miners can be “Overclocked”
+          which will cause the miner to run harder which will produce more
+          profit. With our integration on Opensea, you now can sell your miner
+          peer to peer and receive payment immediately without having to deal
+          with 3rd parties such as Ebay and Alibaba.
+        </p>
+        <br></br>
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          <span className="fs-3 fw-bold text-light">Payouts: </span>
+          Mining profits will be sent to KORs main smart contract that will take
+          out our service fee which includes electricity, hosting, and
+          maintenance before sending to your wallet that is holding the NFT.
+          Profits will be sent as USDC (ERC20) every two weeks on Friday. The
+          service fee is 33% of the total amount that was mined.
+        </p>
+        <br></br>
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          <span className="fs-3 fw-bold text-light">How to Join: </span>
+          With our integration to Web3 it is easier than ever to join KOR.
+          <br></br>
+          <div className="d-flex justify-center">
+            1.Connect metamask
+            <br></br>
+            2.Click Choose my miner
+            <br></br>
+            3.Browse and select the contract of choice
+            <br></br>
+            4.Click Mint Contract
+            <br></br>
+            5.Confirm on metamask
+          </div>
+        </p>
+        <br></br>
+        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+          You will receive the NFT in your metamask as a receipt of the contract
+          you have selected.
         </p>
       </div>
       <div className="d-flex justify-center mt-3 mb-5">

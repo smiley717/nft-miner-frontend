@@ -1,13 +1,18 @@
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Row, Navbar, Container, Nav, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import toast, { Toaster } from "react-hot-toast";
 import { injected } from "../utils/connector";
 require("dotenv").config();
 
-export default function NavBar() {
+export default function NavBar(props) {
+  console.log("====", props);
+  const showBack = props.showBack;
   const { chainId, active, activate, deactivate, account } = useWeb3React();
   const [isWrongNetwork, setIsWrongNetwork] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (active) {
@@ -51,18 +56,40 @@ export default function NavBar() {
     </>
   );
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Row className="menubar">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">HOME</Nav.Link>
-            <Nav.Link href="#about-us">ABOUT US</Nav.Link>
-            <Nav.Link href="#mining">MINING</Nav.Link>
-            <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
-          </Nav>
-          <div className="btn-connect">{renderButton}</div>
-        </Container>
+      <Navbar bg="light" className="navbar-background">
+        {showBack ? (
+          <Container>
+            <Nav className="me-auto">
+              <Nav.Link onClick={() => goBack()}>
+                <BsFillArrowLeftCircleFill />
+                &nbsp;Back
+              </Nav.Link>
+            </Nav>
+            <div className="btn-connect">{renderButton}</div>
+          </Container>
+        ) : (
+          <Container>
+            <Navbar.Brand href="#home">
+              <img src="images/logo.jpg" className="img-fluid logo" />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="#home">HOME</Nav.Link>
+                <Nav.Link href="#about-us">ABOUT US</Nav.Link>
+                <Nav.Link href="#mining">MINING</Nav.Link>
+                <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+              </Nav>
+              <div className="btn-connect">{renderButton}</div>
+            </Navbar.Collapse>
+          </Container>
+        )}
       </Navbar>
     </Row>
   );

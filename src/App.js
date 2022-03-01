@@ -24,8 +24,8 @@ function App() {
           <Route
             path="/"
             element={
-              <Container className="background-gray">
-                <NavBar />
+              <Container className="background-gray font-orbitron">
+                <NavBar showBack={false} />
                 <HomePage />
                 <AboutUs />
                 <Mining />
@@ -36,8 +36,8 @@ function App() {
           <Route
             path="/mint"
             element={
-              <Container className="background-gray">
-                <NavBar />
+              <Container className="background-gray font-orbitron">
+                <NavBar showBack={true} />
                 <Mint />
               </Container>
             }

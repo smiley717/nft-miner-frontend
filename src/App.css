@@ -2,6 +2,14 @@
   background-color: darkgray;
 }
 
+.navbar-background {
+  background-color: white !important;
+}
+
+.font-orbitron {
+  font-family: Orbitron;
+}
+
 .section {
   height: 500px;
   border: 2px double lightgray;
@@ -30,6 +38,7 @@
 
 .gradient-background {
   background-image: url("assets/images/gradient-background.png");
+  background-size: 100% 100%;
 }
 
 .text-darkblue {
@@ -38,10 +47,12 @@
 
 .about-text {
   margin: 60px 0;
+  padding-left: 90px;
+  padding-right: 90px;
 }
 
 .teammembers {
-  margin-top: 70px;
+  margin-top: 20px;
   margin-bottom: 50px;
 }
 
@@ -50,13 +61,17 @@
   border-radius: 50%;
 }
 
+.logo {
+  width: 80px;
+}
+
 .roadmap-img {
   width: 50%;
   padding: 50px;
 }
 
 .walletAddress {
-  color: wheat;
+  color: black;
   margin: auto 30px;
 }
 
@@ -85,4 +100,43 @@
 .miner-rows {
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.roadmap-text {
+  margin-left: 80px;
+  width: calc(100% - 200px);
+}
+
+span.left-align-divider {
+  background: #f7941d;
+  width: 6rem;
+  height: 2px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.roadmap {
+  padding: 70px;
+}
+
+#roadmap .CircularProgressbar {
+  width: 20%;
+  vertical-align: middle;
+}
+
+#roadmap .CircularProgressbar .CircularProgressbar-trail {
+  stroke: #f18c3f;
+  stroke-linecap: round;
+  stroke-width: 1px;
+}
+
+#roadmap .CircularProgressbar .CircularProgressbar-path {
+  stroke: #fff;
+  stroke-linecap: square;
+}
+
+#roadmap .CircularProgressbar .CircularProgressbar-text {
+  fill: #f18c3f;
+  font-size: 20px;
+  font-weight: 600;
 }

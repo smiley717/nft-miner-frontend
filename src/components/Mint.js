@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import ContractAbi from "../Abis/kor-nft-abi.json";
@@ -13,7 +13,7 @@ export default function Mint() {
       provider.getSigner()
     );
 
-    const price = 0.25;
+    const price = 0.0025;
     const priceBigNum = ethers.utils.parseEther(price.toString());
 
     await nftContract
@@ -60,9 +60,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg" onClick={handleMint}>
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -73,9 +76,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -86,9 +92,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -99,9 +108,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
       </Row>
@@ -114,9 +126,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -127,9 +142,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -140,9 +158,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
         <Col>
@@ -153,9 +174,12 @@ export default function Mint() {
             />
           </div>
           <div className="d-flex justify-center mintBtn">
-            <Button variant="primary" size="lg">
-              Mint
-            </Button>{" "}
+            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
+              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
+              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
+            </DropdownButton>
           </div>
         </Col>
       </Row>
