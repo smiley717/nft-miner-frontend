@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Row, Col, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
@@ -5,21 +6,48 @@ import ContractAbi from "../Abis/kor-nft-abi.json";
 require("dotenv").config();
 
 export default function Mint() {
-  const handleMint = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const nftContract = new ethers.Contract(
-      process.env.REACT_APP_NFT_ADDRESS,
-      ContractAbi,
-      provider.getSigner()
-    );
+  const [totalMinerTypes, setTotalMinerTypes] = useState(0);
+  const [miners, setMiners] = useState([]);
 
-    const price = 0.0025;
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const KorMintContract = new ethers.Contract(
+    process.env.REACT_APP_NFT_ADDRESS,
+    ContractAbi,
+    provider.getSigner()
+  );
+
+  useEffect(async () => {
+    const _totalMinerTypes = await KorMintContract.totalMinerTypes();
+    setTotalMinerTypes(_totalMinerTypes.toNumber());
+    console.log(_totalMinerTypes.toNumber());
+
+    let newArr = [];
+    for (let i = 0; i < _totalMinerTypes; i++) {
+      const miner = await KorMintContract.miners(i);
+      const minted = await KorMintContract.mintedMinerCount(
+        miner.hashrate.toNumber()
+      );
+      const total = miner.numOfMiner.toNumber() / 4;
+      const available = total - minted.toNumber() / 4;
+
+      newArr.push({
+        hashrate: miner.hashrate.toNumber(),
+        total: total,
+        available: available,
+        price: (miner.price / 10 ** 18).toString(),
+      });
+    }
+    setMiners(newArr);
+  }, []);
+
+  const handleMint = async (index, num) => {
+    const hashrate = miners[index].hashrate;
+    const price = (miners[index].price / 4) * num;
     const priceBigNum = ethers.utils.parseEther(price.toString());
 
-    await nftContract
-      .buyMiner(15, 1, {
-        value: priceBigNum,
-      })
+    await KorMintContract.buyMiner(hashrate, num, {
+      value: priceBigNum,
+    })
       .then((tx) => {
         return tx.wait().then(
           (receipt) => {
@@ -52,136 +80,49 @@ export default function Mint() {
         </p>
       </div>
       <Row className="miner-rows">
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/15ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/15ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/15ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/15ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-      </Row>
-      <Row className="miner-rows">
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/18ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/18ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/18ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex justify-center">
-            <img
-              src="images/miners/18ths.jpg"
-              className="img-fluid miner-img"
-            />
-          </div>
-          <div className="d-flex justify-center mintBtn">
-            <DropdownButton id="dropdown-basic-button" title="Mint" size="lg">
-              <Dropdown.Item onClick={handleMint}>Mint 1/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 2/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 3/4</Dropdown.Item>
-              <Dropdown.Item onClick={handleMint}>Mint 4/4</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </Col>
+        {Array.from({ length: parseInt(miners.length) }, (_, i) => 0 + i).map(
+          (index) => {
+            return (
+              <Col key={index}>
+                <div className="d-flex justify-center">
+                  <img
+                    src={`images/miners/${miners[index].hashrate}ths.jpg`}
+                    className="img-fluid miner-img"
+                  />
+                </div>
+                <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
+                  Price: {miners[index].price} ETH
+                </div>
+                <div className="d-flex justify-center text-light mb-0 fs-5">
+                  Total: {miners[index].total}
+                </div>
+                <div className="d-flex justify-center text-light mb-0 fs-5">
+                  Available: {miners[index].available}
+                </div>
+                <div className="d-flex justify-center mintBtn">
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    title="Mint"
+                    size="lg"
+                  >
+                    <Dropdown.Item onClick={() => handleMint(index, 1)}>
+                      Mint 1/4
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleMint(index, 2)}>
+                      Mint 2/4
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleMint(index, 3)}>
+                      Mint 3/4
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleMint(index, 4)}>
+                      Mint 4/4
+                    </Dropdown.Item>
+                  </DropdownButton>
+                </div>
+              </Col>
+            );
+          }
+        )}
       </Row>
     </Row>
   );

@@ -5,7 +5,7 @@ export default function Mining() {
   return (
     <Row className="align-center gradient-background" id="mining">
       <div className="about-text">
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-light">Benefits of mining: </span>
           Crypto miners are the perfect investment for people who don't have the
           time to make technical decisions about when to buy and sell their
@@ -15,7 +15,7 @@ export default function Mining() {
           dealing with the volatile movement of the current crypto markets.
         </p>
         <br></br>
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-light">Our service: </span>
           At KOR we decided to do things different from the current cloud mining
           model. We believe Web3 is the future so we have decided to integrate
@@ -27,7 +27,7 @@ export default function Mining() {
           changes would occur to your payout.
         </p>
         <br></br>
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-light">Why KOR? </span>
           You simply make more profit. That’s why. We have invested in state of
           the art immersion cooling setups that will increase your payouts. This
@@ -40,7 +40,7 @@ export default function Mining() {
           with 3rd parties such as Ebay and Alibaba.
         </p>
         <br></br>
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-light">Payouts: </span>
           Mining profits will be sent to KORs main smart contract that will take
           out our service fee which includes electricity, hosting, and
@@ -49,7 +49,7 @@ export default function Mining() {
           service fee is 33% of the total amount that was mined.
         </p>
         <br></br>
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-light">How to Join: </span>
           With our integration to Web3 it is easier than ever to join KOR.
           <br></br>
@@ -66,7 +66,7 @@ export default function Mining() {
           </div>
         </p>
         <br></br>
-        <p className="text-start text-darkblue text-wrap mb-0 fs-4">
+        <p className="text-start text-light text-wrap mb-0 fs-4">
           You will receive the NFT in your metamask as a receipt of the contract
           you have selected.
         </p>

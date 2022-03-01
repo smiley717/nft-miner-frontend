@@ -23,7 +23,7 @@ export default function RoadmapStep(props) {
         <h4 className="text-white font-xl">{title}</h4>
         <span className="left-align-divider"></span>
         <p
-          className="text-white font-lg"
+          className="text-white font-lg mb-0 fs-4"
           dangerouslySetInnerHTML={{ __html: detail }}
         ></p>
       </div>
