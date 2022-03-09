@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import AboutUs from "./components/AboutUs";
+import IntroVideo from "./components/IntroVideo";
 import Mining from "./components/Mining";
 import Roadmap from "./components/Roadmap";
 import Mint from "./components/Mint";
@@ -28,6 +29,7 @@ function App() {
                 <NavBar showBack={false} />
                 <HomePage />
                 <AboutUs />
+                <IntroVideo />
                 <Mining />
                 <Roadmap />
               </Container>

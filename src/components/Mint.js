@@ -21,35 +21,39 @@ export default function Mint() {
     provider.getSigner()
   );
 
+  const updateMiners = async () => {
+    const _totalMinerTypes = await KorMintContract.totalMinerTypes();
+    setTotalMinerTypes(_totalMinerTypes.toNumber());
+
+    let newArr = [];
+    for (let i = 0; i < _totalMinerTypes; i++) {
+      const miner = await KorMintContract.miners(i);
+      const minted = await KorMintContract.mintedMinerCount(
+        miner.hashrate.toNumber()
+      );
+      const total = miner.numOfMiner.toNumber() / 4;
+      const available = total - minted.toNumber() / 4;
+
+      newArr.push({
+        hashrate: miner.hashrate.toNumber(),
+        total: total,
+        available: available,
+        price: (miner.price / 10 ** 18).toString(),
+      });
+    }
+    setMiners(newArr);
+  };
+
   useEffect(async () => {
     if (validNetwork && active) {
-      const _totalMinerTypes = await KorMintContract.totalMinerTypes();
-      setTotalMinerTypes(_totalMinerTypes.toNumber());
-      console.log(_totalMinerTypes.toNumber());
-
-      let newArr = [];
-      for (let i = 0; i < _totalMinerTypes; i++) {
-        const miner = await KorMintContract.miners(i);
-        const minted = await KorMintContract.mintedMinerCount(
-          miner.hashrate.toNumber()
-        );
-        const total = miner.numOfMiner.toNumber() / 4;
-        const available = total - minted.toNumber() / 4;
-
-        newArr.push({
-          hashrate: miner.hashrate.toNumber(),
-          total: total,
-          available: available,
-          price: (miner.price / 10 ** 18).toString(),
-        });
-      }
-      setMiners(newArr);
+      updateMiners();
     }
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
     const hashrate = miners[index].hashrate;
-    const price = (miners[index].price / 4) * num;
+    let price = (miners[index].price * num) / 4;
+    if (num === 3) price += 0.0001;
     const priceBigNum = ethers.utils.parseEther(price.toString());
 
     await KorMintContract.buyMiner(hashrate, num, {
@@ -59,18 +63,17 @@ export default function Mint() {
         return tx.wait().then(
           (receipt) => {
             // This is entered if the transaction receipt indicates success
-            console.log("receipt", receipt);
             toast.success("Your mint was Successful!");
+            updateMiners();
             return true;
           },
           (error) => {
-            console.log("error", error);
             toast.error("Your mint was Failed!");
           }
         );
       })
       .catch((error) => {
-        toast.error("hello");
+        toast.error("Your mint was Failed!");
         if (error.message.indexOf("signature") > 0) {
           toast.error("You canceled transaction!");
         } else {
@@ -80,7 +83,7 @@ export default function Mint() {
   };
 
   return (
-    <Row className="align-center gradient-background" id="mining">
+    <Row className="align-center bubble-background" id="mining">
       <div className="about-text">
         <p className="text-center text-darkblue mb-0 fs-1 fw-bold">
           Mint a NFT, Get Kadena Miner
@@ -88,28 +91,43 @@ export default function Mint() {
       </div>
       {!active ? (
         <Row>
-          <div className="text-center fs-2 fw-bold text-body">
+          <div className="text-center fs-2 fw-bold text-body mt-5">
             Please connect your wallet
           </div>
         </Row>
       ) : !validNetwork ? (
         <Row>
-          <div className="text-center fs-2 fw-bold text-body">
+          <div className="text-center fs-2 fw-bold text-body mt-5">
             Please switch your network into Ethereum main network
           </div>
         </Row>
       ) : (
         <Row className="miner-rows">
-          {Array.from({ length: parseInt(miners.length) }, (_, i) => 0 + i).map(
-            (index) => {
+          {parseInt(miners.length) === 0 ? (
+            <Row>
+              <div className="text-center fs-2 fw-bold text-body mt-5">
+                No miners available for now
+              </div>
+            </Row>
+          ) : (
+            Array.from(
+              { length: parseInt(miners.length) },
+              (_, i) => 0 + i
+            ).map((index) => {
               return (
                 <Col key={index} className="d-flex justify-center">
                   <div className="miner-box">
                     <div className="d-flex justify-center">
                       <img
-                        src={`images/miners/${miners[index].hashrate}ths.jpg`}
+                        src={`images/miners/KD5.png`}
                         className="img-fluid miner-img"
                       />
+                    </div>
+                    <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
+                      <span className="font-1">Hashrate: </span>&nbsp; &nbsp;
+                      <span className="font-2">
+                        {miners[index].hashrate} Th/s
+                      </span>
                     </div>
                     <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
                       <span className="font-1">Price: </span>&nbsp; &nbsp;
@@ -146,7 +164,7 @@ export default function Mint() {
                   </div>
                 </Col>
               );
-            }
+            })
           )}
         </Row>
       )}

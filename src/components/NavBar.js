@@ -11,7 +11,6 @@ export default function NavBar(props) {
   console.log("====", props);
   const showBack = props.showBack;
   const { chainId, active, activate, deactivate, account } = useWeb3React();
-  const [isWrongNetwork, setIsWrongNetwork] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,9 +19,6 @@ export default function NavBar(props) {
         toast.error(
           "You are on wrong network. Please switch to Ethereum Mainnet to continue"
         );
-        setIsWrongNetwork(true);
-      } else {
-        setIsWrongNetwork(false);
       }
     }
   }, [chainId]);
@@ -39,7 +35,9 @@ export default function NavBar(props) {
     <>
       {active ? (
         <div className="connectedWallet">
-          <div className="walletAddress">{account}</div>
+          <div className="walletAddress">
+            {account.substring(0, 5) + " ... " + account.substring(38)}
+          </div>
           <Button
             variant="primary"
             size="lg"
@@ -63,33 +61,57 @@ export default function NavBar(props) {
   return (
     <Row className="menubar">
       <Navbar bg="light" className="navbar-background">
-        {showBack ? (
-          <Container>
-            <Nav className="me-auto">
-              <Nav.Link onClick={() => goBack()}>
-                <BsFillArrowLeftCircleFill />
-                &nbsp;Back
-              </Nav.Link>
-            </Nav>
-            <div className="btn-connect">{renderButton}</div>
-          </Container>
-        ) : (
-          <Container>
-            <Navbar.Brand href="#home">
-              <img src="images/logo.jpg" className="img-fluid logo" />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+        <>
+          {showBack ? (
+            <Container>
               <Nav className="me-auto">
-                <Nav.Link href="#home">HOME</Nav.Link>
-                <Nav.Link href="#about-us">ABOUT US</Nav.Link>
-                <Nav.Link href="#mining">MINING</Nav.Link>
-                <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+                <Nav.Link onClick={() => goBack()}>
+                  <BsFillArrowLeftCircleFill />
+                  &nbsp;Back
+                </Nav.Link>
               </Nav>
               <div className="btn-connect">{renderButton}</div>
-            </Navbar.Collapse>
-          </Container>
-        )}
+            </Container>
+          ) : (
+            <Container>
+              <Navbar.Brand href="#home">
+                <img src="images/logo.jpg" className="img-fluid logo" />
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link href="#home">HOME</Nav.Link>
+                  <Nav.Link href="#about-us">ABOUT US</Nav.Link>
+                  <Nav.Link href="#mining">MINING</Nav.Link>
+                  <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+                </Nav>
+                <div className="btn-connect">{renderButton}</div>
+              </Navbar.Collapse>
+            </Container>
+          )}
+        </>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            success: {
+              style: {
+                background: "white",
+                paddingLeft: 40,
+                paddingRight: 40,
+                fontWeight: 500,
+              },
+            },
+            error: {
+              style: {
+                background: "white",
+                color: "black",
+                paddingLeft: 40,
+                paddingRight: 40,
+                fontWeight: 500,
+              },
+            },
+          }}
+        />
       </Navbar>
     </Row>
   );
