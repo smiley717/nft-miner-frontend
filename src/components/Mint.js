@@ -3,11 +3,12 @@ import { Row, Col, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
-import ContractAbi from "../Abis/kor-nft-abi.json";
+import nftContractAbi from "../Abis/kor-nft-abi.json";
+import aggregatorContractAbi from "../Abis/eac-aggregator-abi.json";
 require("dotenv").config();
 
 export default function Mint() {
-  const [totalMinerTypes, setTotalMinerTypes] = useState(0);
+  const [latestPrice, setLatestPrice] = useState(0);
   const [miners, setMiners] = useState([]);
 
   const { chainId, active } = useWeb3React();
@@ -17,13 +18,23 @@ export default function Mint() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const KorMintContract = new ethers.Contract(
     process.env.REACT_APP_NFT_ADDRESS,
-    ContractAbi,
+    nftContractAbi,
     provider.getSigner()
   );
 
+  const AggregatorContract = new ethers.Contract(
+    process.env.REACT_APP_EACAggregator_ADDRESS,
+    aggregatorContractAbi,
+    provider.getSigner()
+  );
+
+  const updatePrice = async () => {
+    const _latestPrice = await AggregatorContract.latestAnswer();
+    setLatestPrice(_latestPrice.toNumber());
+  };
+
   const updateMiners = async () => {
     const _totalMinerTypes = await KorMintContract.totalMinerTypes();
-    setTotalMinerTypes(_totalMinerTypes.toNumber());
 
     let newArr = [];
     for (let i = 0; i < _totalMinerTypes; i++) {
@@ -38,7 +49,7 @@ export default function Mint() {
         hashrate: miner.hashrate.toNumber(),
         total: total,
         available: available,
-        price: (miner.price / 10 ** 18).toString(),
+        price: miner.price.toString(),
       });
     }
     setMiners(newArr);
@@ -47,17 +58,16 @@ export default function Mint() {
   useEffect(async () => {
     if (validNetwork && active) {
       updateMiners();
+      updatePrice();
     }
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
     const hashrate = miners[index].hashrate;
-    let price = (miners[index].price * num) / 4;
-    if (num === 3) price += 0.0001;
-    const priceBigNum = ethers.utils.parseEther(price.toString());
+    let price = (miners[index].price * latestPrice * num) / 4;
 
     await KorMintContract.buyMiner(hashrate, num, {
-      value: priceBigNum,
+      value: price.toString(),
     })
       .then((tx) => {
         return tx.wait().then(
@@ -91,13 +101,13 @@ export default function Mint() {
       </div>
       {!active ? (
         <Row>
-          <div className="text-center fs-2 fw-bold text-body mt-5">
+          <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
             Please connect your wallet
           </div>
         </Row>
       ) : !validNetwork ? (
         <Row>
-          <div className="text-center fs-2 fw-bold text-body mt-5">
+          <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
             Please switch your network into Ethereum main network
           </div>
         </Row>
@@ -105,7 +115,7 @@ export default function Mint() {
         <Row className="miner-rows">
           {parseInt(miners.length) === 0 ? (
             <Row>
-              <div className="text-center fs-2 fw-bold text-body mt-5">
+              <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
                 No miners available for now
               </div>
             </Row>
@@ -119,7 +129,7 @@ export default function Mint() {
                   <div className="miner-box">
                     <div className="d-flex justify-center">
                       <img
-                        src={`images/miners/KD5.png`}
+                        src={`images/miners/${miners[index].hashrate}.png`}
                         className="img-fluid miner-img"
                       />
                     </div>
@@ -131,7 +141,7 @@ export default function Mint() {
                     </div>
                     <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
                       <span className="font-1">Price: </span>&nbsp; &nbsp;
-                      <span className="font-2">{miners[index].price} ETH</span>
+                      <span className="font-2">{miners[index].price} USD</span>
                     </div>
                     <div className="d-flex justify-center text-light mb-0 fs-5">
                       <span className="font-1">Total: </span>&nbsp; &nbsp;
@@ -151,15 +161,21 @@ export default function Mint() {
                           Mint 1/4
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleMint(index, 2)}>
-                          Mint 2/4
+                          Mint 1/2
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleMint(index, 3)}>
                           Mint 3/4
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleMint(index, 4)}>
-                          Mint 4/4
+                          Mint 1
                         </Dropdown.Item>
                       </DropdownButton>
+                    </div>
+                    <div className="d-flex justify-center text-danger mt-3 mb-3 fs-6">
+                      * Current ETH / USD price:
+                    </div>
+                    <div className="d-flex justify-center text-light mb-0 fs-6">
+                      {(latestPrice / 10 ** 18).toString().substring(0, 8)}
                     </div>
                   </div>
                 </Col>
