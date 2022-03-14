@@ -27,33 +27,17 @@ export default function AboutUs() {
         </p>
       </div>
       <Row className="teammembers">
-        <Col>
-          <img
-            src="images/teammembers/1.jpg"
-            className="img-fluid profile"
-            alt="teammembers"
-          />
+        <Col className="d-flex justify-content-center">
+          <img src="images/teammembers/1.jpg" className="img-fluid profile" />
         </Col>
-        <Col>
-          <img
-            src="images/teammembers/2.jpg"
-            className="img-fluid profile"
-            alt="teammembers"
-          />
+        <Col className="d-flex justify-content-center">
+          <img src="images/teammembers/2.jpg" className="img-fluid profile" />
         </Col>
-        <Col>
-          <img
-            src="images/teammembers/3.jpg"
-            className="img-fluid profile"
-            alt="teammembers"
-          />
+        <Col className="d-flex justify-content-center">
+          <img src="images/teammembers/3.jpg" className="img-fluid profile" />
         </Col>
-        <Col>
-          <img
-            src="images/teammembers/4.jpg"
-            className="img-fluid profile"
-            alt="teammembers"
-          />
+        <Col className="d-flex justify-content-center">
+          <img src="images/teammembers/4.jpg" className="img-fluid profile" />
         </Col>
       </Row>
     </Row>

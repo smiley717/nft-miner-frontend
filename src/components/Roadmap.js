@@ -1,9 +1,9 @@
-import { Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import RoadmapStep from "./RoadmapStep";
 
 export default function Roadmap() {
   return (
-    <Container className="align-center bg-dark roadmap" id="roadmap">
+    <Row className="align-center bg-dark roadmap" id="roadmap">
       <RoadmapStep
         progress={10}
         percent="10%"
@@ -22,6 +22,6 @@ export default function Roadmap() {
         title="Phase 3"
         detail="Private Sale, First location setup 50+ Miners, Social media, DAPP development, Second location setup 450 Miners, Immersion cooling setup, Public sale, Minermen NFT Collection"
       />
-    </Container>
+    </Row>
   );
 }

@@ -25,23 +25,23 @@ function App() {
           <Route
             path="/"
             element={
-              <Container className="background-gray font-orbitron">
+              <div className="background-gray font-orbitron">
                 <NavBar showBack={false} />
                 <HomePage />
                 <AboutUs />
                 <IntroVideo />
                 <Mining />
                 <Roadmap />
-              </Container>
+              </div>
             }
           />
           <Route
             path="/mint"
             element={
-              <Container className="background-gray font-orbitron">
+              <div className="background-gray font-orbitron">
                 <NavBar showBack={true} />
                 <Mint />
-              </Container>
+              </div>
             }
           />
         </Routes>
