@@ -85,7 +85,29 @@ export default function NavBar(props) {
                   <Nav.Link href="#mining">MINING</Nav.Link>
                   <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
                 </Nav>
-                <div className="btn-connect">{renderButton}</div>
+                <div className="d-flex align-items-center">
+                  <div className="d-flex me-5">
+                    <a href="#">
+                      <img
+                        src="images/instagram.png"
+                        className="img-fluid p-4 height-100"
+                      />
+                    </a>
+                    <a href="#">
+                      <img
+                        src="images/opensea.png"
+                        className="img-fluid p-4 height-100"
+                      />
+                    </a>
+                    <a href="#">
+                      <img
+                        src="images/discord.png"
+                        className="img-fluid p-4 height-100"
+                      />
+                    </a>
+                  </div>
+                  <div className="btn-connect">{renderButton}</div>
+                </div>
               </Navbar.Collapse>
             </Container>
           )}
