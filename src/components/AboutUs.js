@@ -1,5 +1,4 @@
 import { Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
 
 export default function AboutUs() {
   return (
@@ -29,16 +28,32 @@ export default function AboutUs() {
       </div>
       <Row className="teammembers">
         <Col>
-          <img src="images/teammembers/1.jpg" className="img-fluid profile" />
+          <img
+            src="images/teammembers/1.jpg"
+            className="img-fluid profile"
+            alt="teammembers"
+          />
         </Col>
         <Col>
-          <img src="images/teammembers/2.jpg" className="img-fluid profile" />
+          <img
+            src="images/teammembers/2.jpg"
+            className="img-fluid profile"
+            alt="teammembers"
+          />
         </Col>
         <Col>
-          <img src="images/teammembers/3.jpg" className="img-fluid profile" />
+          <img
+            src="images/teammembers/3.jpg"
+            className="img-fluid profile"
+            alt="teammembers"
+          />
         </Col>
         <Col>
-          <img src="images/teammembers/4.jpg" className="img-fluid profile" />
+          <img
+            src="images/teammembers/4.jpg"
+            className="img-fluid profile"
+            alt="teammembers"
+          />
         </Col>
       </Row>
     </Row>

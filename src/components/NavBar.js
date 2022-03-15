@@ -1,6 +1,6 @@
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
-import { Row, Navbar, Container, Nav, Button } from "react-bootstrap";
+import { useEffect } from "react";
+import { Row, Navbar, Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import toast, { Toaster } from "react-hot-toast";
@@ -21,7 +21,7 @@ export default function NavBar(props) {
         );
       }
     }
-  }, [chainId]);
+  }, [chainId, active]);
 
   async function connect(injected) {
     activate(injected);
@@ -63,7 +63,7 @@ export default function NavBar(props) {
       <Navbar bg="light" className="navbar-background">
         <>
           {showBack ? (
-            <Container>
+            <div className="d-flex ms-5">
               <Nav className="me-auto">
                 <Nav.Link onClick={() => goBack()}>
                   <BsFillArrowLeftCircleFill />
@@ -71,11 +71,15 @@ export default function NavBar(props) {
                 </Nav.Link>
               </Nav>
               <div className="btn-connect">{renderButton}</div>
-            </Container>
+            </div>
           ) : (
-            <Container>
+            <div className="d-flex m-auto">
               <Navbar.Brand href="#home">
-                <img src="images/logo.jpg" className="img-fluid logo" />
+                <img
+                  src="images/logo.jpg"
+                  className="img-fluid logo"
+                  alt="logo"
+                />
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -109,7 +113,7 @@ export default function NavBar(props) {
                   <div className="btn-connect">{renderButton}</div>
                 </div>
               </Navbar.Collapse>
-            </Container>
+            </div>
           )}
         </>
         <Toaster

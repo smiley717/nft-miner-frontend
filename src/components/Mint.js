@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Row, Col, Button, DropdownButton, Dropdown } from "react-bootstrap";
+import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
@@ -57,8 +57,8 @@ export default function Mint() {
 
   useEffect(async () => {
     if (validNetwork && active) {
-      updateMiners();
-      updatePrice();
+      await updateMiners();
+      await updatePrice();
     }
   }, [validNetwork, active]);
 
@@ -71,10 +71,10 @@ export default function Mint() {
     })
       .then((tx) => {
         return tx.wait().then(
-          (receipt) => {
+          async (receipt) => {
             // This is entered if the transaction receipt indicates success
             toast.success("Your mint was Successful!");
-            updateMiners();
+            await updateMiners();
             return true;
           },
           (error) => {
