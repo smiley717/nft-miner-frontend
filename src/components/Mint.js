@@ -172,10 +172,10 @@ export default function Mint() {
                       </DropdownButton>
                     </div>
                     <div className="d-flex justify-center text-danger mt-3 mb-3 fs-6">
-                      * Current ETH / USD price:
+                      * Current USD / ETH price:
                     </div>
                     <div className="d-flex justify-center text-light mb-0 fs-6">
-                      {(latestPrice / 10 ** 18).toString().substring(0, 8)}
+                      {(10 ** 18 / latestPrice).toString().substring(0, 8)}
                     </div>
                   </div>
                 </Col>
