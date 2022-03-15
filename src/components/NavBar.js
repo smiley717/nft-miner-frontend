@@ -74,7 +74,7 @@ export default function NavBar(props) {
             </div>
           ) : (
             <div className="d-flex m-auto">
-              <Navbar.Brand href="#home">
+              <Navbar.Brand href="#home" className="d-flex align-items-center">
                 <img
                   src="images/logo.jpg"
                   className="img-fluid logo"
