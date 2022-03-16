@@ -133,6 +133,10 @@ span.left-align-divider {
   height: 100px;
 }
 
+.vertical-timeline-element-date {
+  color: white;
+}
+
 .vertical-timeline::before {
   background-color: white !important;
   content: "";
