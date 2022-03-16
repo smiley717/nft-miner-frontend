@@ -14,7 +14,7 @@ export default function Roadmap() {
       <VerticalTimeline>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
-          contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+          contentStyle={{ background: "rgb(33 40 243)", color: "#fff" }}
           contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
           date="2022 Q1"
           iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}

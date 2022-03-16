@@ -88,6 +88,9 @@ export default function NavBar(props) {
                   <Nav.Link href="#about-us">ABOUT US</Nav.Link>
                   <Nav.Link href="#mining">MINING</Nav.Link>
                   <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+                  <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
+                    WHITEPAPER
+                  </Nav.Link>
                 </Nav>
                 <div className="d-flex align-items-center">
                   <div className="d-flex me-5">
