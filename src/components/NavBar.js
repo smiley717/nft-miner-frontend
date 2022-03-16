@@ -64,7 +64,7 @@ export default function NavBar(props) {
         <>
           {showBack ? (
             <div className="d-flex ms-5">
-              <Nav className="me-auto">
+              <Nav className="me-5">
                 <Nav.Link onClick={() => goBack()}>
                   <BsFillArrowLeftCircleFill />
                   &nbsp;Back
@@ -83,7 +83,7 @@ export default function NavBar(props) {
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
+                <Nav className="me-5">
                   <Nav.Link href="#home">HOME</Nav.Link>
                   <Nav.Link href="#about-us">ABOUT US</Nav.Link>
                   <Nav.Link href="#mining">MINING</Nav.Link>
