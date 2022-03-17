@@ -34,18 +34,17 @@ export default function Mint() {
   };
 
   const updateMiners = async () => {
-    const _totalMinerTypes = await KorMintContract.totalMinerTypes();
+    const _totalMiner = await KorMintContract.totalMiner();
 
     let newArr = [];
-    for (let i = 0; i < _totalMinerTypes; i++) {
+    for (let i = 0; i < _totalMiner; i++) {
       const miner = await KorMintContract.miners(i);
-      const minted = await KorMintContract.mintedMinerCount(
-        miner.hashrate.toNumber()
-      );
+      const minted = await KorMintContract.mintedMinerCount(i);
       const total = miner.numOfMiner.toNumber() / 4;
       const available = total - minted.toNumber() / 4;
 
       newArr.push({
+        minerType: miner.minerType,
         hashrate: miner.hashrate.toNumber(),
         total: total,
         available: available,
@@ -63,10 +62,9 @@ export default function Mint() {
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
-    const hashrate = miners[index].hashrate;
     let price = (miners[index].price * latestPrice * num) / 4;
 
-    await KorMintContract.buyMiner(hashrate, num, {
+    await KorMintContract.buyMiner(index, num, {
       value: price.toString(),
     })
       .then((tx) => {
@@ -129,7 +127,7 @@ export default function Mint() {
                   <div className="miner-box">
                     <div className="d-flex justify-center">
                       <img
-                        src={`images/miners/${miners[index].hashrate}.png`}
+                        src={`images/miners/${miners[index].minerType}.png`}
                         className="img-fluid miner-img"
                       />
                     </div>
