@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  DropdownButton,
+  Dropdown,
+  Modal,
+  Button,
+} from "react-bootstrap";
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
@@ -9,6 +16,10 @@ import { updateMetadata } from "../services/api";
 require("dotenv").config();
 
 export default function Mint() {
+  const [showMintModal, setShowMintModal] = useState(false);
+  const [mintAmountValue, setMintAmountValue] = useState(0);
+  const [selectedMinerIndex, setSelectedMinerIndex] = useState(0);
+
   const [latestPrice, setLatestPrice] = useState(0);
   const [miners, setMiners] = useState([]);
 
@@ -28,6 +39,18 @@ export default function Mint() {
     aggregatorContractAbi,
     provider.getSigner()
   );
+
+  const handleCloseMintModal = () => setShowMintModal(false);
+  const handleShowMintModal = () => setShowMintModal(true);
+
+  const handleAmountChange = (event) => {
+    setMintAmountValue(event.target.value);
+  };
+
+  const handleMintMore = (index) => {
+    handleShowMintModal();
+    setSelectedMinerIndex(index);
+  };
 
   const updatePrice = async () => {
     const _latestPrice = await AggregatorContract.latestAnswer();
@@ -172,6 +195,9 @@ export default function Mint() {
                         <Dropdown.Item onClick={() => handleMint(index, 4)}>
                           Mint 1
                         </Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleMintMore(index)}>
+                          Mint More
+                        </Dropdown.Item>
                       </DropdownButton>
                     </div>
                     <div className="d-flex justify-content-center text-danger mt-3 mb-3 fs-6">
@@ -181,6 +207,42 @@ export default function Mint() {
                       {(10 ** 18 / latestPrice).toString().substring(0, 8)}
                     </div>
                   </div>
+                  <Modal show={showMintModal} onHide={handleCloseMintModal}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>
+                        Mint miner {miners[selectedMinerIndex].minerType} with{" "}
+                        {miners[selectedMinerIndex].hashrate} Th/s
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Row className="m-auto fs-6 mb-2 text-danger">
+                        * Some examples here: 5 for 1 1/4, 6 for 1 1/2, etc
+                      </Row>
+                      <input
+                        type="text"
+                        className="form-control mb-3"
+                        placeholder="Input the amount to mint"
+                        onChange={handleAmountChange}
+                      />
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="secondary"
+                        onClick={handleCloseMintModal}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() =>
+                          handleMint(selectedMinerIndex, mintAmountValue)
+                        }
+                        disabled={mintAmountValue === 0}
+                      >
+                        Deposit
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </Col>
               );
             })

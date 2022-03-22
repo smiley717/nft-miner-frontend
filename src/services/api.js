@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiServer = "http://localhost/api";
+const apiServer = "https://koryptoblockchain.com/api";
 const updateMetadataURL = apiServer + "/updateMetadata";
 
 export async function updateMetadata() {

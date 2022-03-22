@@ -44,8 +44,9 @@ export default function Mining() {
         <br></br>
         <p className="text-start text-secondary text-wrap mb-0 fs-4">
           <span className="fs-3 fw-bold text-secondary">Payouts: </span>
-          Mining profits will be sent to KORs main smart contract that will take
-          out our service fee which includes electricity, hosting, and
+          Mining profits will be sent to KORs main wallet. The smart contract of
+          the NFT will determine how much profit was mined in the given time
+          period minus the service fee which includes electricity, hosting, and
           maintenance before sending to your wallet that is holding the NFT.
           Profits will be sent as USDC (ERC20) every two weeks on Friday. The
           service fee is 33% of the total amount that was mined.
