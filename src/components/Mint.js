@@ -91,7 +91,10 @@ export default function Mint() {
   };
 
   return (
-    <Row className="align-center bubble-background" id="mining">
+    <Row
+      className="align-items-center bubble-background fixed-menubar"
+      id="mining"
+    >
       <div className="about-text">
         <p className="text-center text-darkblue mb-0 fs-1 fw-bold">
           Mint a NFT, Get Kadena Miner
@@ -123,33 +126,33 @@ export default function Mint() {
               (_, i) => 0 + i
             ).map((index) => {
               return (
-                <Col key={index} className="d-flex justify-center">
+                <Col key={index} className="d-flex justify-content-center">
                   <div className="miner-box">
-                    <div className="d-flex justify-center">
+                    <div className="d-flex justify-content-center">
                       <img
                         src={`images/miners/${miners[index].minerType}.png`}
                         className="img-fluid miner-img"
                       />
                     </div>
-                    <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
+                    <div className="d-flex justify-content-center text-light mt-3 mb-0 fs-5">
                       <span className="font-1">Hashrate: </span>&nbsp; &nbsp;
                       <span className="font-2">
                         {miners[index].hashrate} Th/s
                       </span>
                     </div>
-                    <div className="d-flex justify-center text-light mt-3 mb-0 fs-5">
+                    <div className="d-flex justify-content-center text-light mt-3 mb-0 fs-5">
                       <span className="font-1">Price: </span>&nbsp; &nbsp;
                       <span className="font-2">{miners[index].price} USD</span>
                     </div>
-                    <div className="d-flex justify-center text-light mb-0 fs-5">
+                    <div className="d-flex justify-content-center text-light mb-0 fs-5">
                       <span className="font-1">Total: </span>&nbsp; &nbsp;
                       <span className="font-2">{miners[index].total}</span>
                     </div>
-                    <div className="d-flex justify-center text-light mb-0 fs-5">
+                    <div className="d-flex justify-content-center text-light mb-0 fs-5">
                       <span className="font-1">Available: </span>&nbsp; &nbsp;
                       <span className="font-2">{miners[index].available}</span>
                     </div>
-                    <div className="d-flex justify-center mintBtn">
+                    <div className="d-flex justify-content-center mintBtn">
                       <DropdownButton
                         id="dropdown-basic-button"
                         title="Mint"
@@ -169,10 +172,10 @@ export default function Mint() {
                         </Dropdown.Item>
                       </DropdownButton>
                     </div>
-                    <div className="d-flex justify-center text-danger mt-3 mb-3 fs-6">
+                    <div className="d-flex justify-content-center text-danger mt-3 mb-3 fs-6">
                       * Current USD / ETH price:
                     </div>
-                    <div className="d-flex justify-center text-light mb-0 fs-6">
+                    <div className="d-flex justify-content-center text-light mb-0 fs-6">
                       {(10 ** 18 / latestPrice).toString().substring(0, 8)}
                     </div>
                   </div>

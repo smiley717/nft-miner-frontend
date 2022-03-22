@@ -17,19 +17,11 @@
 
 .menubar {
   height: 100px;
+  z-index: 10;
 }
 
-.align-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.align-center {
-  align-items: center;
+.fixed-menubar {
+  padding-top: 116px;
 }
 
 .bubble-background {
