@@ -132,7 +132,7 @@ export default function Mint() {
                   <div className="miner-box">
                     <div className="d-flex justify-content-center">
                       <img
-                        src={`images/miners/${miners[index].minerType}.png`}
+                        src={`images/miners_website/${miners[index].minerType}.png`}
                         className="img-fluid miner-img"
                       />
                     </div>
