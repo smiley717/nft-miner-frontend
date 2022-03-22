@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import nftContractAbi from "../Abis/kor-nft-abi.json";
 import aggregatorContractAbi from "../Abis/eac-aggregator-abi.json";
+import { updateMetadata } from "../services/api";
 require("dotenv").config();
 
 export default function Mint() {
@@ -62,7 +63,7 @@ export default function Mint() {
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
-    let price = (miners[index].price * latestPrice * num) / 4;
+    const price = (miners[index].price * latestPrice * num) / 4;
 
     await KorMintContract.buyMiner(index, num, {
       value: price.toString(),
@@ -73,6 +74,7 @@ export default function Mint() {
             // This is entered if the transaction receipt indicates success
             toast.success("Your mint was Successful!");
             await updateMiners();
+            await updateMetadata();
             return true;
           },
           (error) => {
