@@ -119,7 +119,7 @@ export default function Mint() {
     <Row className="align-items-center bubble-background fixed-menubar">
       <div className="about-text">
         <p className="text-center text-darkblue mb-0 fs-1 fw-bold">
-          Mint a NFT, Get Kadena Miner
+          Buy Miner, Receive NFT, Earn Profit
         </p>
       </div>
       {!active ? (
