@@ -70,24 +70,24 @@ export default function NavBar(props) {
         <>
           {showBack ? (
             <Row className="m-auto w-80">
-              <Col>
+              <div className="d-flex justify-content-between w-50">
                 <Nav className="fw-bold">
                   <Nav.Link onClick={() => goBack()}>
                     <BsFillArrowLeftCircleFill />
                     &nbsp;Back
                   </Nav.Link>
                 </Nav>
-              </Col>
-              <Col className="d-flex align-items-center justify-content-end">
+              </div>
+              <div className="d-flex align-items-center justify-content-end w-50">
                 <div>{renderButton}</div>
-              </Col>
+              </div>
             </Row>
           ) : (
             <Row className="m-auto w-80">
-              <Col className="d-flex justify-content-between nav-bar-left">
+              <div className="d-flex justify-content-between nav-bar-left">
                 <Navbar.Brand
                   href="#home"
-                  className="d-flex align-items-center"
+                  className="d-flex align-items-center navbar-brand"
                 >
                   <img src="images/logo.jpg" className="logo" alt="logo" />
                 </Navbar.Brand>
@@ -101,9 +101,9 @@ export default function NavBar(props) {
                     WHITEPAPER
                   </Nav.Link>
                 </Nav>
-              </Col>
-              <Col className="d-flex align-items-center nav-bar-right">
-                <div>{renderButton}</div>
+              </div>
+              <div className="d-flex align-items-center nav-bar-right">
+                <div className="me-2">{renderButton}</div>
                 <div className="d-flex">
                   <a href="https://www.instagram.com/koryptoblockchain/?hl=en">
                     <img
@@ -124,7 +124,7 @@ export default function NavBar(props) {
                     />
                   </a>
                 </div>
-              </Col>
+              </div>
             </Row>
           )}
         </>

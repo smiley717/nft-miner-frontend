@@ -58,7 +58,7 @@
 }
 
 .logo {
-  width: 100px;
+  width: 70px;
 }
 
 .walletAddress {
@@ -180,6 +180,10 @@ span.left-align-divider {
   padding: 0 0.75rem;
 }
 
+.w-80 {
+  width: 80%;
+}
+
 @media only screen and (max-width: 1250px) {
   .nav-bar-left {
     width: 100%;
@@ -211,7 +215,7 @@ span.left-align-divider {
   }
 
   .logo {
-    width: 60px;
+    width: 40px;
   }
 
   .w-80 {
@@ -232,5 +236,9 @@ span.left-align-divider {
     margin: auto 8px;
     width: max-content;
     font-size: 11px;
+  }
+
+  .navbar-brand {
+    margin-right: 0;
   }
 }
