@@ -31,7 +31,8 @@ export default function AboutUs() {
           <div className="d-flex justify-content-center">
             <img src="images/teammembers/1.png" className="img-fluid profile" />
           </div>
-          <div className="text-center mt-3">Chase Balliette, Founder</div>
+          <div className="text-center mt-3">Chase Balliette</div>
+          <div className="text-center mt-3">Founder</div>
           <div className="text-center mt-3">
             <a href="https://www.linkedin.com/in/chase-balliette-17ab7a1ab/">
               LinkedIn
@@ -42,7 +43,8 @@ export default function AboutUs() {
           <div className="d-flex justify-content-center">
             <img src="images/teammembers/2.png" className="img-fluid profile" />
           </div>
-          <div className="text-center mt-3">Nick Mast, Operations Manager</div>
+          <div className="text-center mt-3">Nick Mast</div>
+          <div className="text-center mt-3">CTO</div>
           <div className="text-center mt-3">
             <a href="https://www.linkedin.com/in/nicholas-mast-31574b183/">
               LinkedIn
