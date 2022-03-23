@@ -1,6 +1,6 @@
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useEffect } from "react";
-import { Row, Navbar, Nav, Button } from "react-bootstrap";
+import { Row, Col, Navbar, Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import toast, { Toaster } from "react-hot-toast";
@@ -41,13 +41,19 @@ export default function NavBar(props) {
           <Button
             variant="primary"
             size="lg"
+            className="connect-wallet-btn"
             onClick={() => disConnect(injected)}
           >
             Disconnect
           </Button>
         </div>
       ) : (
-        <Button variant="primary" size="lg" onClick={() => connect(injected)}>
+        <Button
+          variant="primary"
+          size="lg"
+          className="connect-wallet-btn"
+          onClick={() => connect(injected)}
+        >
           Connect Wallet
         </Button>
       )}
@@ -63,41 +69,41 @@ export default function NavBar(props) {
       <Navbar bg="light" className="navbar-background">
         <>
           {showBack ? (
-            <div className="d-flex ms-5 w-8 justify-content-around">
-              <Nav className="me-5 fw-bold">
-                <Nav.Link onClick={() => goBack()}>
-                  <BsFillArrowLeftCircleFill />
-                  &nbsp;Back
-                </Nav.Link>
-              </Nav>
-              <div className="d-flex align-items-center">
-                <div className="btn-connect">{renderButton}</div>
-              </div>
-            </div>
+            <Row className="m-auto w-80">
+              <Col>
+                <Nav className="fw-bold">
+                  <Nav.Link onClick={() => goBack()}>
+                    <BsFillArrowLeftCircleFill />
+                    &nbsp;Back
+                  </Nav.Link>
+                </Nav>
+              </Col>
+              <Col className="d-flex align-items-center justify-content-end">
+                <div>{renderButton}</div>
+              </Col>
+            </Row>
           ) : (
-            <div className="d-flex m-auto w-8 justify-content-between">
-              <Navbar.Brand
-                href="#home"
-                className="d-flex align-items-center ms-5"
-              >
-                <img
-                  src="images/logo.jpg"
-                  className="img-fluid logo"
-                  alt="logo"
-                />
-              </Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Nav className="me-5 align-items-center fw-bold">
-                <Nav.Link href="#home">HOME</Nav.Link>
-                <Nav.Link href="#about-us">ABOUT US</Nav.Link>
-                <Nav.Link href="#mining">MINING</Nav.Link>
-                <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
-                <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
-                  WHITEPAPER
-                </Nav.Link>
-              </Nav>
-              <div className="d-flex align-items-center">
-                <div className="btn-connect">{renderButton}</div>
+            <Row className="m-auto w-80">
+              <Col className="d-flex justify-content-between nav-bar-left">
+                <Navbar.Brand
+                  href="#home"
+                  className="d-flex align-items-center"
+                >
+                  <img src="images/logo.jpg" className="logo" alt="logo" />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Nav className="me-5 align-items-center fw-bold nav-bar-font">
+                  <Nav.Link href="#home">HOME</Nav.Link>
+                  <Nav.Link href="#about-us">ABOUTUS</Nav.Link>
+                  <Nav.Link href="#mining">MINING</Nav.Link>
+                  <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+                  <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
+                    WHITEPAPER
+                  </Nav.Link>
+                </Nav>
+              </Col>
+              <Col className="d-flex align-items-center nav-bar-right">
+                <div>{renderButton}</div>
                 <div className="d-flex">
                   <a href="https://www.instagram.com/koryptoblockchain/?hl=en">
                     <img
@@ -118,8 +124,8 @@ export default function NavBar(props) {
                     />
                   </a>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           )}
         </>
         <Toaster

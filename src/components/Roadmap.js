@@ -21,14 +21,14 @@ export default function Roadmap() {
           icon={<WorkIcon />}
         >
           <h3 className="vertical-timeline-element-title">Phase 1</h3>
-          <p>
+          <div>
             <ul>
               <li>Private sale</li>
               <li>location setup 50+ Miners</li>
               <li>Social media (Instagram, linkedin, Discord, Tiktok)</li>
               <li>DAPP development</li>
             </ul>
-          </p>
+          </div>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
@@ -37,14 +37,14 @@ export default function Roadmap() {
           icon={<WorkIcon />}
         >
           <h3 className="vertical-timeline-element-title">Phase 2</h3>
-          <p>
+          <div>
             <ul>
               <li>Public sale</li>
               <li>Second location setup 450 Miners</li>
               <li>Overclocking Firmware, Immersion cooling setup</li>
               <li>Minermen NFT Collection</li>
             </ul>
-          </p>
+          </div>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
@@ -53,12 +53,12 @@ export default function Roadmap() {
           icon={<SchoolIcon />}
         >
           <h3 className="vertical-timeline-element-title">Phase 3</h3>
-          <p>
+          <div>
             <ul>
               <li>Renewable energy: Solar</li>
               <li>DEFI project</li>
             </ul>
-          </p>
+          </div>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"

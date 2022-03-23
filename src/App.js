@@ -25,7 +25,7 @@ function App() {
           <Route
             path="/"
             element={
-              <div className="background-gray font-orbitron">
+              <div className="background-gray font-orbitron p-075">
                 <NavBar showBack={false} />
                 <HomePage />
                 <AboutUs />
@@ -38,7 +38,7 @@ function App() {
           <Route
             path="/mint"
             element={
-              <div className="background-gray font-orbitron">
+              <div className="background-gray font-orbitron p-075">
                 <NavBar showBack={true} />
                 <Mint />
               </div>

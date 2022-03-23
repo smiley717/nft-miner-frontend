@@ -116,10 +116,7 @@ export default function Mint() {
   };
 
   return (
-    <Row
-      className="align-items-center bubble-background fixed-menubar"
-      id="mining"
-    >
+    <Row className="align-items-center bubble-background fixed-menubar">
       <div className="about-text">
         <p className="text-center text-darkblue mb-0 fs-1 fw-bold">
           Mint a NFT, Get Kadena Miner
@@ -138,7 +135,7 @@ export default function Mint() {
           </div>
         </Row>
       ) : (
-        <Row className="miner-rows">
+        <Row className="miner-rows m-auto">
           {parseInt(miners.length) === 0 ? (
             <Row>
               <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
@@ -151,7 +148,10 @@ export default function Mint() {
               (_, i) => 0 + i
             ).map((index) => {
               return (
-                <Col key={index} className="d-flex justify-content-center">
+                <Col
+                  key={index}
+                  className="d-flex justify-content-center miner-margin"
+                >
                   <div className="miner-box">
                     <div className="d-flex justify-content-center">
                       <img
