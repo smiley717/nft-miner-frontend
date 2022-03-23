@@ -86,9 +86,9 @@ export default function Mint() {
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
-    const price = (miners[index].price * latestPrice * num) / 4;
+    const price = (miners[index].price * latestPrice * parseFloat(num) * 4) / 4;
 
-    await KorMintContract.buyMiner(index, num, {
+    await KorMintContract.buyMiner(index, parseFloat(num) * 4, {
       value: price.toString(),
     })
       .then((tx) => {
@@ -215,13 +215,22 @@ export default function Mint() {
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <Row className="m-auto fs-6 mb-2 text-danger">
-                        * Some examples here: 5 for 1 1/4, 6 for 1 1/2, etc
-                      </Row>
+                      <div className="m-auto mb-2 d-flex align-items-center">
+                        <span className="text-body fs-6 me-3">
+                          * Mint Amount:
+                        </span>
+                        <span className="text-danger fs-3">
+                          {mintAmountValue}
+                        </span>
+                      </div>
                       <input
-                        type="text"
-                        className="form-control mb-3"
-                        placeholder="Input the amount to mint"
+                        id="range"
+                        type="range"
+                        value={mintAmountValue}
+                        min="0"
+                        max={miners[selectedMinerIndex].available}
+                        step="0.25"
+                        className="w-100"
                         onChange={handleAmountChange}
                       />
                     </Modal.Body>
@@ -239,7 +248,7 @@ export default function Mint() {
                         }
                         disabled={mintAmountValue === 0}
                       >
-                        Deposit
+                        Mint
                       </Button>
                     </Modal.Footer>
                   </Modal>

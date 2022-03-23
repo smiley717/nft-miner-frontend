@@ -27,17 +27,27 @@ export default function AboutUs() {
         </p>
       </div>
       <Row className="teammembers">
-        <Col className="d-flex justify-content-center">
-          <img src="images/teammembers/1.jpg" className="img-fluid profile" />
+        <Col>
+          <div className="d-flex justify-content-center">
+            <img src="images/teammembers/1.png" className="img-fluid profile" />
+          </div>
+          <div className="text-center mt-3">Chase Balliette, Founder</div>
+          <div className="text-center mt-3">
+            <a href="https://www.linkedin.com/in/chase-balliette-17ab7a1ab/">
+              LinkedIn
+            </a>
+          </div>
         </Col>
-        <Col className="d-flex justify-content-center">
-          <img src="images/teammembers/2.jpg" className="img-fluid profile" />
-        </Col>
-        <Col className="d-flex justify-content-center">
-          <img src="images/teammembers/3.jpg" className="img-fluid profile" />
-        </Col>
-        <Col className="d-flex justify-content-center">
-          <img src="images/teammembers/4.jpg" className="img-fluid profile" />
+        <Col>
+          <div className="d-flex justify-content-center">
+            <img src="images/teammembers/2.png" className="img-fluid profile" />
+          </div>
+          <div className="text-center mt-3">Nick Mast, Operations Manager</div>
+          <div className="text-center mt-3">
+            <a href="https://www.linkedin.com/in/nicholas-mast-31574b183/">
+              LinkedIn
+            </a>
+          </div>
         </Col>
       </Row>
     </Row>

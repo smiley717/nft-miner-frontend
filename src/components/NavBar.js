@@ -63,7 +63,7 @@ export default function NavBar(props) {
       <Navbar bg="light" className="navbar-background">
         <>
           {showBack ? (
-            <div className="d-flex ms-5 w-100 justify-content-around">
+            <div className="d-flex ms-5 w-8 justify-content-around">
               <Nav className="me-5 fw-bold">
                 <Nav.Link onClick={() => goBack()}>
                   <BsFillArrowLeftCircleFill />
@@ -75,8 +75,11 @@ export default function NavBar(props) {
               </div>
             </div>
           ) : (
-            <div className="d-flex m-auto w-100 justify-content-around">
-              <Navbar.Brand href="#home" className="d-flex align-items-center">
+            <div className="d-flex m-auto w-8 justify-content-between">
+              <Navbar.Brand
+                href="#home"
+                className="d-flex align-items-center ms-5"
+              >
                 <img
                   src="images/logo.jpg"
                   className="img-fluid logo"
@@ -84,7 +87,6 @@ export default function NavBar(props) {
                 />
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              {/* <Navbar.Collapse id="basic-navbar-nav"> */}
               <Nav className="me-5 align-items-center fw-bold">
                 <Nav.Link href="#home">HOME</Nav.Link>
                 <Nav.Link href="#about-us">ABOUT US</Nav.Link>
@@ -97,27 +99,26 @@ export default function NavBar(props) {
               <div className="d-flex align-items-center">
                 <div className="btn-connect">{renderButton}</div>
                 <div className="d-flex">
-                  <a href="#">
+                  <a href="https://www.instagram.com/koryptoblockchain/?hl=en">
                     <img
                       src="images/instagram.png"
-                      className="img-fluid p-4 height-100"
+                      className="img-fluid social-media"
                     />
                   </a>
-                  <a href="#">
+                  <a href="https://testnets.opensea.io/collection/kor-v2">
                     <img
                       src="images/opensea.png"
-                      className="img-fluid p-4 height-100"
+                      className="img-fluid social-media"
                     />
                   </a>
-                  <a href="#">
+                  <a href="https://discord.gg/eDWX4Evt">
                     <img
                       src="images/discord.png"
-                      className="img-fluid p-4 height-100"
+                      className="img-fluid social-media"
                     />
                   </a>
                 </div>
               </div>
-              {/* </Navbar.Collapse> */}
             </div>
           )}
         </>

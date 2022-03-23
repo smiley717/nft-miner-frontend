@@ -21,7 +21,7 @@
 }
 
 .fixed-menubar {
-  padding-top: 116px;
+  padding-top: 100px;
 }
 
 .bubble-background {
@@ -54,7 +54,7 @@
 }
 
 .logo {
-  width: 80px;
+  width: 100px;
 }
 
 .walletAddress {
@@ -146,4 +146,14 @@ span.left-align-divider {
     margin-left: -2px;
     background-color: white;
   }
+}
+
+.social-media {
+  height: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.w-8 {
+  width: 80%;
 }
