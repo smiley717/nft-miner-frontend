@@ -94,6 +94,12 @@
   margin-bottom: 20px;
 }
 
+.nft-rows {
+  margin: 20px auto;
+  width: 90%;
+  text-align: center;
+}
+
 span.left-align-divider {
   background: #f7941d;
   width: 6rem;
@@ -115,13 +121,13 @@ span.left-align-divider {
 }
 
 .font-1 {
-  color: #0f9;
+  color: rgb(156 233 253);
   font-size: 25px;
   font-weight: bolder;
 }
 
 .font-2 {
-  color: #ff0;
+  color: rgb(235 255 255);
   font-size: 25px;
   font-weight: bolder;
 }
@@ -223,7 +229,7 @@ span.left-align-divider {
   }
 
   .nav-bar-font {
-    font-size: 8px;
+    font-size: 6.3px;
   }
 
   .connect-wallet-btn {

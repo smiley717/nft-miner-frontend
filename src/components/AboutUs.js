@@ -29,7 +29,11 @@ export default function AboutUs() {
       <Row className="teammembers">
         <Col>
           <div className="d-flex justify-content-center">
-            <img src="images/teammembers/1.png" className="img-fluid profile" />
+            <img
+              src="images/teammembers/1.png"
+              alt="teammember"
+              className="img-fluid profile"
+            />
           </div>
           <div className="text-center mt-3">Chase Balliette</div>
           <div className="text-center mt-3">Founder</div>
@@ -41,7 +45,11 @@ export default function AboutUs() {
         </Col>
         <Col>
           <div className="d-flex justify-content-center">
-            <img src="images/teammembers/2.png" className="img-fluid profile" />
+            <img
+              src="images/teammembers/2.png"
+              alt="teammember"
+              className="img-fluid profile"
+            />
           </div>
           <div className="text-center mt-3">Nick Mast</div>
           <div className="text-center mt-3">CTO</div>

@@ -78,10 +78,10 @@ export default function Mint() {
     setMiners(newArr);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (validNetwork && active) {
-      await updateMiners();
-      await updatePrice();
+      updateMiners();
+      updatePrice();
     }
   }, [validNetwork, active]);
 
@@ -156,6 +156,7 @@ export default function Mint() {
                     <div className="d-flex justify-content-center">
                       <img
                         src={`images/miners_website/${miners[index].minerType}.png`}
+                        alt="miner"
                         className="img-fluid miner-img"
                       />
                     </div>
@@ -183,16 +184,16 @@ export default function Mint() {
                         title="Mint"
                         size="lg"
                       >
-                        <Dropdown.Item onClick={() => handleMint(index, 1)}>
+                        <Dropdown.Item onClick={() => handleMint(index, 0.25)}>
                           Mint 1/4
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleMint(index, 2)}>
+                        <Dropdown.Item onClick={() => handleMint(index, 0.5)}>
                           Mint 1/2
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleMint(index, 3)}>
+                        <Dropdown.Item onClick={() => handleMint(index, 0.75)}>
                           Mint 3/4
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleMint(index, 4)}>
+                        <Dropdown.Item onClick={() => handleMint(index, 1)}>
                           Mint 1
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleMintMore(index)}>
@@ -246,7 +247,7 @@ export default function Mint() {
                         onClick={() =>
                           handleMint(selectedMinerIndex, mintAmountValue)
                         }
-                        disabled={mintAmountValue === 0}
+                        disabled={parseFloat(mintAmountValue) === 0}
                       >
                         Mint
                       </Button>

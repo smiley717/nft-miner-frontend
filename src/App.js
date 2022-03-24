@@ -4,7 +4,6 @@ import Web3 from "web3";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Container from "react-bootstrap/Container";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import AboutUs from "./components/AboutUs";
@@ -12,6 +11,7 @@ import IntroVideo from "./components/IntroVideo";
 import Mining from "./components/Mining";
 import Roadmap from "./components/Roadmap";
 import Mint from "./components/Mint";
+import KorKlub from "./components/KorKlub";
 
 function getLibrary(provider) {
   return new Web3(provider);
@@ -41,6 +41,15 @@ function App() {
               <div className="background-gray font-orbitron p-075">
                 <NavBar showBack={true} />
                 <Mint />
+              </div>
+            }
+          />
+          <Route
+            path="/korklub"
+            element={
+              <div className="background-gray font-orbitron p-075">
+                <NavBar showBack={true} />
+                <KorKlub />
               </div>
             }
           />

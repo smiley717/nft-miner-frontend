@@ -1,6 +1,6 @@
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useEffect } from "react";
-import { Row, Col, Navbar, Nav, Button } from "react-bootstrap";
+import { Row, Navbar, Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import toast, { Toaster } from "react-hot-toast";
@@ -97,6 +97,7 @@ export default function NavBar(props) {
                   <Nav.Link href="#about-us">ABOUTUS</Nav.Link>
                   <Nav.Link href="#mining">MINING</Nav.Link>
                   <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
+                  <Nav.Link href="/korklub">KORKlub</Nav.Link>
                   <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
                     WHITEPAPER
                   </Nav.Link>
@@ -108,18 +109,21 @@ export default function NavBar(props) {
                   <a href="https://www.instagram.com/koryptoblockchain/?hl=en">
                     <img
                       src="images/instagram.png"
+                      alt="instagram link"
                       className="img-fluid social-media"
                     />
                   </a>
                   <a href="https://testnets.opensea.io/collection/kor-v2">
                     <img
                       src="images/opensea.png"
+                      alt="opensea link"
                       className="img-fluid social-media"
                     />
                   </a>
                   <a href="https://discord.gg/eDWX4Evt">
                     <img
                       src="images/discord.png"
+                      alt="discord link"
                       className="img-fluid social-media"
                     />
                   </a>
