@@ -126,26 +126,29 @@ export default function KorKlub() {
             {isLoading ? (
               "Loading..."
             ) : (
-              <ToolkitProvider
-                bootstrap4
-                keyField="id"
-                data={nftTokens}
-                columns={columns}
-                exportCSV
-              >
-                {(props) => (
-                  <div>
-                    <div className="d-flex justify-content-end mb-3">
-                      <MyExportCSV {...props.csvProps} />
+              <>
+                <h3 className="fw-bold">KOR NFT EARNINGS</h3>
+                <ToolkitProvider
+                  bootstrap4
+                  keyField="id"
+                  data={nftTokens}
+                  columns={columns}
+                  exportCSV
+                >
+                  {(props) => (
+                    <div>
+                      <div className="d-flex justify-content-end mb-3">
+                        <MyExportCSV {...props.csvProps} />
+                      </div>
+                      <BootstrapTable
+                        defaultSorted={defaultSorted}
+                        pagination={pagination}
+                        {...props.baseProps}
+                      />
                     </div>
-                    <BootstrapTable
-                      defaultSorted={defaultSorted}
-                      pagination={pagination}
-                      {...props.baseProps}
-                    />
-                  </div>
-                )}
-              </ToolkitProvider>
+                  )}
+                </ToolkitProvider>
+              </>
             )}
           </div>
         </Row>
