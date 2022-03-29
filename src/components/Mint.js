@@ -16,6 +16,7 @@ import { updateMetadata } from "../services/api";
 require("dotenv").config();
 
 export default function Mint() {
+  const [isLoading, setIsLoading] = useState(true);
   const [showMintModal, setShowMintModal] = useState(false);
   const [mintAmountValue, setMintAmountValue] = useState(0);
   const [selectedMinerIndex, setSelectedMinerIndex] = useState(0);
@@ -58,6 +59,7 @@ export default function Mint() {
   };
 
   const updateMiners = async () => {
+    setIsLoading(true);
     const _totalMiner = await KorMintContract.totalMiner();
 
     let newArr = [];
@@ -76,6 +78,7 @@ export default function Mint() {
       });
     }
     setMiners(newArr);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -136,7 +139,13 @@ export default function Mint() {
         </Row>
       ) : (
         <Row className="miner-rows m-auto">
-          {parseInt(miners.length) === 0 ? (
+          {isLoading ? (
+            <Row>
+              <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
+                Loading...
+              </div>
+            </Row>
+          ) : parseInt(miners.length) === 0 ? (
             <Row>
               <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
                 No miners available for now
