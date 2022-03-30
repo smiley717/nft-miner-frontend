@@ -30,6 +30,7 @@ export default function KorKlub() {
   const columns = [
     { dataField: "id", text: "Id", sort: true },
     { dataField: "owner", text: "Owner", sort: false },
+    { dataField: "minerType", text: "Miner Type", sort: true },
     { dataField: "hashrate", text: "Hash Rate", sort: true },
     { dataField: "amount", text: "Amount", sort: true },
     { dataField: "remaining_days", text: "Remaining days", sort: true },
@@ -74,6 +75,7 @@ export default function KorKlub() {
       const token = await KorMintContract.tokenIdToToken(i + 1);
       const minerIndex = token.index.toNumber();
       const miner = await KorMintContract.miners(minerIndex);
+      const minerType = miner.minerType.toString();
       const totalEarning =
         Math.round((token.totalEarning.toNumber() * 100) / 10 ** 6) / 100;
       const mintTime = token.mintTime;
@@ -90,6 +92,7 @@ export default function KorKlub() {
       newArr.push({
         id: i + 1,
         owner: owner.substring(0, 5) + " ... " + owner.substring(38),
+        minerType: minerType,
         hashrate: (miner.hashrate.toNumber() * token.amount.toNumber()) / 4,
         amount: token.amount.toNumber() / 4,
         remaining_days: remaining_days,

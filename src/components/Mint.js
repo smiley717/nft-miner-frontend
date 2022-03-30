@@ -24,7 +24,7 @@ export default function Mint() {
   const [latestPrice, setLatestPrice] = useState(0);
   const [miners, setMiners] = useState([]);
 
-  const { chainId, active } = useWeb3React();
+  const { chainId, active, account } = useWeb3React();
   const validNetwork =
     chainId === parseInt(process.env.REACT_APP_CHAIN_ID) ? true : false;
 
@@ -89,8 +89,17 @@ export default function Mint() {
   }, [validNetwork, active]);
 
   const handleMint = async (index, num) => {
+    handleCloseMintModal();
+    const balanceETH = await provider.getBalance(account);
     const price = (miners[index].price * latestPrice * parseFloat(num) * 4) / 4;
-
+    if (
+      balanceETH.toString().length < price.toString().length ||
+      (balanceETH.toString().length === price.toString().length &&
+        balanceETH.toString() < price.toString())
+    ) {
+      toast.error("You don't have enough ETH balance in your wallet");
+      return;
+    }
     await KorMintContract.buyMiner(index, parseFloat(num) * 4, {
       value: price.toString(),
     })
@@ -211,7 +220,7 @@ export default function Mint() {
                       </DropdownButton>
                     </div>
                     <div className="d-flex justify-content-center text-danger mt-3 mb-3 fs-6">
-                      * Current USD / ETH price:
+                      * Current ETH / USD price:
                     </div>
                     <div className="d-flex justify-content-center text-light mb-0 fs-6">
                       {(10 ** 18 / latestPrice).toString().substring(0, 8)}
