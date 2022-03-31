@@ -189,6 +189,10 @@ span.left-align-divider {
   width: 80%;
 }
 
+.table-font-size {
+  font-size: 1rem;
+}
+
 @media only screen and (max-width: 1250px) {
   .nav-bar-left {
     width: 100%;
@@ -244,5 +248,15 @@ span.left-align-divider {
 
   .navbar-brand {
     margin-right: 0;
+  }
+
+  .nft-rows {
+    margin: 20px auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .table-font-size {
+    font-size: 0.7rem;
   }
 }

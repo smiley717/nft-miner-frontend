@@ -152,7 +152,7 @@ export default function KorKlub() {
                   exportCSV
                 >
                   {(props) => (
-                    <div>
+                    <div className="table-font-size">
                       <div className="d-flex justify-content-end mb-3">
                         <MyExportCSV {...props.csvProps} />
                       </div>
