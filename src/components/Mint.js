@@ -16,6 +16,7 @@ import { updateMetadata } from "../services/api";
 require("dotenv").config();
 
 export default function Mint() {
+  const [isWalletIntalled, setIsWalletInstalled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showMintModal, setShowMintModal] = useState(false);
   const [mintAmountValue, setMintAmountValue] = useState(0);
@@ -28,18 +29,14 @@ export default function Mint() {
   const validNetwork =
     chainId === parseInt(process.env.REACT_APP_CHAIN_ID) ? true : false;
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const KorMintContract = new ethers.Contract(
-    process.env.REACT_APP_NFT_ADDRESS,
-    nftContractAbi,
-    provider.getSigner()
-  );
-
-  const AggregatorContract = new ethers.Contract(
-    process.env.REACT_APP_EACAggregator_ADDRESS,
-    aggregatorContractAbi,
-    provider.getSigner()
-  );
+  let provider;
+  let KorMintContract;
+  let AggregatorContract;
+  useEffect(async () => {
+    if (window.ethereum) {
+      setIsWalletInstalled(true);
+    }
+  }, []);
 
   const handleCloseMintModal = () => setShowMintModal(false);
   const handleShowMintModal = () => setShowMintModal(true);
@@ -82,7 +79,19 @@ export default function Mint() {
   };
 
   useEffect(() => {
-    if (validNetwork && active) {
+    if (validNetwork && active && window.ethereum) {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+      KorMintContract = new ethers.Contract(
+        process.env.REACT_APP_NFT_ADDRESS,
+        nftContractAbi,
+        provider.getSigner()
+      );
+
+      AggregatorContract = new ethers.Contract(
+        process.env.REACT_APP_EACAggregator_ADDRESS,
+        aggregatorContractAbi,
+        provider.getSigner()
+      );
       updateMiners();
       updatePrice();
     }
@@ -134,7 +143,13 @@ export default function Mint() {
           Buy Miner, Receive NFT, Earn Profit
         </p>
       </div>
-      {!active ? (
+      {!isWalletIntalled ? (
+        <Row>
+          <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
+            Please install wallet on your browser
+          </div>
+        </Row>
+      ) : !active ? (
         <Row>
           <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
             Please connect your wallet

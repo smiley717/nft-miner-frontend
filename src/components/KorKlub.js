@@ -13,6 +13,7 @@ import { secondsToYMD, ymdToString } from "../services/TimeConverter";
 require("dotenv").config();
 
 export default function KorKlub() {
+  const [isWalletIntalled, setIsWalletInstalled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [nftTokens, setNftTokens] = useState([]);
 
@@ -20,12 +21,12 @@ export default function KorKlub() {
   const validNetwork =
     chainId === parseInt(process.env.REACT_APP_CHAIN_ID) ? true : false;
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const KorMintContract = new ethers.Contract(
-    process.env.REACT_APP_NFT_ADDRESS,
-    nftContractAbi,
-    provider.getSigner()
-  );
+  let KorMintContract;
+  useEffect(async () => {
+    if (window.ethereum) {
+      setIsWalletInstalled(true);
+    }
+  }, []);
 
   const columns = [
     { dataField: "id", text: "Id", sort: true },
@@ -104,14 +105,26 @@ export default function KorKlub() {
   };
 
   useEffect(async () => {
-    if (validNetwork && active) {
+    if (validNetwork && active && window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      KorMintContract = new ethers.Contract(
+        process.env.REACT_APP_NFT_ADDRESS,
+        nftContractAbi,
+        provider.getSigner()
+      );
       updateNFTList();
     }
   }, [validNetwork, active]);
 
   return (
     <Row className="align-items-center bubble-background fixed-menubar vh-100">
-      {!active ? (
+      {!isWalletIntalled ? (
+        <Row>
+          <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
+            Please install wallet on your browser
+          </div>
+        </Row>
+      ) : !active ? (
         <Row>
           <div className="text-center fs-2 fw-bold text-body mt-5 mb-5">
             Please connect your wallet

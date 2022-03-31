@@ -289,6 +289,20 @@
     "constant": true
   },
   {
+    "inputs": [],
+    "name": "rewardDistributePeriod",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -606,6 +620,13 @@
       }
     ],
     "name": "setUSDCAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "setLastDistributionTIme",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
