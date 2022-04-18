@@ -56,6 +56,10 @@
   border-radius: 50%;
 }
 
+.audit {
+  width: 230px;
+}
+
 .logo {
   width: 100px;
 }
@@ -159,9 +163,15 @@ span.left-align-divider {
 }
 
 .social-media {
-  height: 30px;
+  height: 32px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.twitter {
+  height: 28px;
+  margin-left: 3px;
+  margin-top: 2px;
 }
 
 .nav-bar-left {
@@ -174,7 +184,7 @@ span.left-align-divider {
 }
 
 .nav-bar-font {
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .miner-margin {
@@ -231,7 +241,7 @@ span.left-align-divider {
   }
 
   .nav-bar-font {
-    font-size: 6.3px;
+    font-size: 5.5px;
   }
 
   .connect-wallet-btn {

@@ -1,11 +1,34 @@
+import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 
 export default function HomePage() {
+  const [isiOS, setIsiOS] = useState(false);
+
+  useEffect(async () => {
+    setIsiOS(iOS());
+  }, []);
+
+  const iOS = () => {
+    return (
+      [
+        "iPad Simulator",
+        "iPhone Simulator",
+        "iPod Simulator",
+        "iPad",
+        "iPhone",
+        "iPod",
+      ].includes(navigator.platform) ||
+      // iPad on iOS 13 detection
+      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    );
+  };
+
   return (
     <Row className="align-items-center fixed-menubar" id="home">
       <div className="h-100 position-relative p-0">
         <video
-          autoPlay
+          autoPlay={isiOS ? false : true}
+          controls={isiOS ? true : false}
           muted
           loop
           src="video/Futuristic_HiTech_Intro_1080p.mp4"

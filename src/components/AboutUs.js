@@ -45,6 +45,15 @@ export default function AboutUs() {
             </a>
           </div>
         </Col>
+        <Col className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center">
+            <img
+              src="images/audit.png"
+              alt="teammember"
+              className="img-fluid audit"
+            />
+          </div>
+        </Col>
         <Col>
           <div className="d-flex justify-content-center">
             <img

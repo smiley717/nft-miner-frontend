@@ -101,6 +101,9 @@ export default function NavBar(props) {
                   <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
                     WHITEPAPER
                   </Nav.Link>
+                  <Nav.Link href="https://github.com/coinscope-co/audits/blob/main/korypto/audit.pdf" target="_blank">
+                    AUDIT
+                  </Nav.Link>
                 </Nav>
               </div>
               <div className="d-flex align-items-center nav-bar-right">
@@ -120,11 +123,18 @@ export default function NavBar(props) {
                       className="img-fluid social-media"
                     />
                   </a>
-                  <a href="https://discord.gg/eDWX4Evt">
+                  <a href="https://discord.gg/jPsKyqat">
                     <img
                       src="images/discord.png"
                       alt="discord link"
                       className="img-fluid social-media"
+                    />
+                  </a>
+                  <a href="https://twitter.com/KorBlockchain">
+                    <img
+                      src="images/twitter.png"
+                      alt="twitter link"
+                      className="img-fluid twitter"
                     />
                   </a>
                 </div>

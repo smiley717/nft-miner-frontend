@@ -39,10 +39,12 @@ export default function Roadmap() {
           <h3 className="vertical-timeline-element-title">Phase 2</h3>
           <div>
             <ul>
+              <li>Smart Contract Audit</li>
               <li>Public sale</li>
               <li>Second location setup 450 Miners</li>
               <li>Overclocking Firmware, Immersion cooling setup</li>
               <li>Minermen NFT Collection</li>
+              <li>Credit/Debit Card integration</li>
             </ul>
           </div>
         </VerticalTimelineElement>
