@@ -24,12 +24,13 @@ export default function Mint() {
 
   const [latestPrice, setLatestPrice] = useState(0);
   const [miners, setMiners] = useState([]);
+  const [provider, setProvider] = useState();
 
   const { chainId, active, account } = useWeb3React();
   const validNetwork =
     chainId === parseInt(process.env.REACT_APP_CHAIN_ID) ? true : false;
 
-  let provider;
+  // let provider;
   let KorMintContract;
   let AggregatorContract;
   useEffect(async () => {
@@ -62,13 +63,13 @@ export default function Mint() {
     let newArr = [];
     for (let i = 0; i < _totalMiner; i++) {
       const miner = await KorMintContract.miners(i);
-      const minted = await KorMintContract.mintedMinerCount(i);
+      const minted = miner.mintedCount;
       const total = miner.numOfMiner.toNumber() / 4;
       const available = total - minted.toNumber() / 4;
 
       newArr.push({
         minerType: miner.minerType,
-        hashrate: miner.hashrate.toNumber(),
+        hashrate: miner.hashRate.toNumber(),
         total: total,
         available: available,
         price: miner.price.toString(),
@@ -78,19 +79,21 @@ export default function Mint() {
     setIsLoading(false);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (validNetwork && active && window.ethereum) {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
+      const myProvider = new ethers.providers.Web3Provider(window.ethereum);
+      setProvider(myProvider);
+      const balanceETH = await myProvider.getBalance(account);
       KorMintContract = new ethers.Contract(
         process.env.REACT_APP_NFT_ADDRESS,
         nftContractAbi,
-        provider.getSigner()
+        myProvider.getSigner()
       );
 
       AggregatorContract = new ethers.Contract(
         process.env.REACT_APP_EACAggregator_ADDRESS,
         aggregatorContractAbi,
-        provider.getSigner()
+        myProvider.getSigner()
       );
       updateMiners();
       updatePrice();

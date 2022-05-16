@@ -93,15 +93,33 @@ export default function NavBar(props) {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-5 align-items-center fw-bold nav-bar-font">
-                  <Nav.Link href="#home">HOME</Nav.Link>
-                  <Nav.Link href="#about-us">ABOUTUS</Nav.Link>
-                  <Nav.Link href="#mining">MINING</Nav.Link>
-                  <Nav.Link href="#roadmap">ROADMAP</Nav.Link>
-                  <Nav.Link href="/korklub">KORKlub</Nav.Link>
-                  <Nav.Link href="pdf/Whitepaper.pdf" target="_blank">
+                  <Nav.Link href="#home" className="text-dark">
+                    HOME
+                  </Nav.Link>
+                  <Nav.Link href="#about-us" className="text-dark">
+                    ABOUTUS
+                  </Nav.Link>
+                  <Nav.Link href="#mining" className="text-dark">
+                    MINING
+                  </Nav.Link>
+                  <Nav.Link href="#roadmap" className="text-dark">
+                    ROADMAP
+                  </Nav.Link>
+                  <Nav.Link href="/korklub" className="text-dark">
+                    KORKlub
+                  </Nav.Link>
+                  <Nav.Link
+                    href="pdf/Whitepaper.pdf"
+                    className="text-dark"
+                    target="_blank"
+                  >
                     WHITEPAPER
                   </Nav.Link>
-                  <Nav.Link href="https://github.com/coinscope-co/audits/blob/main/korypto/audit.pdf" target="_blank">
+                  <Nav.Link
+                    href="https://github.com/coinscope-co/audits/blob/main/korypto/audit.pdf"
+                    className="text-dark"
+                    target="_blank"
+                  >
                     AUDIT
                   </Nav.Link>
                 </Nav>
@@ -116,14 +134,14 @@ export default function NavBar(props) {
                       className="img-fluid social-media"
                     />
                   </a>
-                  <a href="https://testnets.opensea.io/collection/kor-v2">
+                  <a href="#">
                     <img
                       src="images/opensea.png"
                       alt="opensea link"
                       className="img-fluid social-media"
                     />
                   </a>
-                  <a href="https://discord.gg/jPsKyqat">
+                  <a href="https://discord.gg/KXcQzhcRUb">
                     <img
                       src="images/discord.png"
                       alt="discord link"

@@ -59,6 +59,7 @@ export default function Roadmap() {
             <ul>
               <li>Renewable energy: Solar</li>
               <li>DEFI project</li>
+              <li>Launch DAPP on Kadena</li>
             </ul>
           </div>
         </VerticalTimelineElement>
