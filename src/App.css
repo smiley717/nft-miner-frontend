@@ -158,6 +158,10 @@ span.left-align-divider {
   background: var(--line-color);
 }
 
+.margin-top-100 {
+  margin-top: 100px;
+}
+
 @media only screen and (min-width: 1170px) {
   .vertical-timeline.vertical-timeline--two-columns:before {
     left: 50%;
@@ -245,7 +249,7 @@ span.left-align-divider {
   }
 
   .nav-bar-font {
-    font-size: 5.5px;
+    font-size: 5px;
   }
 
   .connect-wallet-btn {
@@ -272,5 +276,9 @@ span.left-align-divider {
 
   .table-font-size {
     font-size: 0.7rem;
+  }
+
+  .margin-top-100 {
+    margin-top: 50px;
   }
 }

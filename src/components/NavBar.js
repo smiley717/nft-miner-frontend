@@ -108,6 +108,9 @@ export default function NavBar(props) {
                   <Nav.Link href="/korklub" className="text-dark">
                     KORKlub
                   </Nav.Link>
+                  <Nav.Link href="/howto" className="text-dark">
+                    HOWTO
+                  </Nav.Link>
                   <Nav.Link
                     href="pdf/Whitepaper.pdf"
                     className="text-dark"
